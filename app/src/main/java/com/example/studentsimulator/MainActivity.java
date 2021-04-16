@@ -114,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
         //TODO статитстику бы
     }
 
+
+
+
     private void getData() {
         SharedPreferences sPref = getPreferences(MODE_PRIVATE);
         age = sPref.getInt("age", 15);
