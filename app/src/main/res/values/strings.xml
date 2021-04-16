@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">StudentSimulator</string>
+    <string name="title_activity_shop">ShopActivity</string>
+    <string name="tab_text_1">ЕДА</string>
+    <string name="tab_text_2">ШМОТ</string>
+</resources>
