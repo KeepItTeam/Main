@@ -73,12 +73,12 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_exam" />
 
     <TextView
-        android:id="@+id/tv_count_day_exam"
+        android:id="@+id/tv_day_toExam"
         android:layout_width="12dp"
         android:layout_height="19dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="12dp"
-        android:text="1"
+
         android:textColor="#649EC8"
         app:layout_constraintEnd_toStartOf="@+id/tv_day"
         app:layout_constraintTop_toBottomOf="@+id/tv_exam" />
@@ -149,6 +149,7 @@
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="28dp"
         android:background="@android:color/transparent"
+        android:onClick="goToCourses"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/course" />

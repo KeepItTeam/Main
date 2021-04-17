@@ -29,8 +29,6 @@ public class TestActivity extends AppCompatActivity {
         //TODO разобраться с паузой, убрать кнопку
         final Button backButton = findViewById(R.id.backButton);
         backButton.setEnabled(false);
-
-
         //массивы дважды перемешиваются чтобы 1)взять случайые вопросы из неправильных 2)перемешать правильные с неправильными
         final Button[] buttonAnswers = new Button[wrongAnswersNumber+1];
         final LinearLayout variants= findViewById(R.id.variants);

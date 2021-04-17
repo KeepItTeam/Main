@@ -1,19 +1,14 @@
 package com.example.studentsimulator;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private int lecturesMissed;
     private int practicesMissed;
     private int daysToExam;
-    ;
+
 
     //информация по проведению пар
     private boolean isLectureToBeVisited;
@@ -56,15 +51,16 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO данные по курсу
 
-    //TODO нормальное создание студента
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getData();
-        TextView daysToExamView=findViewById(R.id.tv_count_day_exam);
-        daysToExamView.setText(daysToExam);
         setContentView(R.layout.activity_main);
+        TextView daysToExamView=findViewById(R.id.tv_day_toExam);
+       // Log.e("TV", daysToExamView.toString());
+        daysToExamView.setText(String.valueOf(daysToExam));
+
 
     }
 
@@ -77,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Ваши финансы")
                 .setMessage("Ваша сумма на счету: " + money + "\n" +
-                        "Общий доход" + allIncome + "\n" +
-                        "Доход от стипендии" + stipendIncome + "\n" +
-                        "Доход от работы" + jobIncome + "\n" +
-                        "Прочие доходы" + otherIncome + "\n"
+                        "Общий доход: " + allIncome + "\n" +
+                        "Доход от стипендии: " + stipendIncome + "\n" +
+                        "Доход от работы: " + jobIncome + "\n" +
+                        "Прочие доходы: " + otherIncome + "\n"
                 )
                 .setPositiveButton("ОК",
                         new DialogInterface.OnClickListener() {
@@ -115,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
     public void showCourseStatistics(View view) {
         Intent intent = new Intent(this, StatActivity.class);
         startActivity(intent);
-        //TODO статитстику бы
+
     }
 
     private void getData() {
@@ -145,70 +141,83 @@ public class MainActivity extends AppCompatActivity {
 
     public void goStudying(View view) {
         //посетить ли лекцию и практику (чекбокс)
+        view.setEnabled(false);
         final String[] lessonsArray = {"Лекция", "Практика"};
         final boolean[] checkedItemsArray = {false, false};
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("Выберите, куда идёте:")
-                .setMultiChoiceItems(lessonsArray, checkedItemsArray,
-                        new DialogInterface.OnMultiChoiceClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which, boolean isChecked) {
-                                checkedItemsArray[which] = isChecked;
-                            }
-                        })
-                .setPositiveButton("Готово",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int id) {
-                                // передача информации о пропущенных парах
-                                if (!checkedItemsArray[0]) {
-                                    lecturesMissed++;
-                                }
-                                if (!checkedItemsArray[1]) {
-                                    practicesMissed++;
-                                }
-                                //сохранение этой информации
-                                SharedPreferences sPref = getPreferences(MODE_PRIVATE);
-                                SharedPreferences.Editor ed = sPref.edit();
-                                ed.putInt("practicesMissed", practicesMissed);
-                                ed.putInt("lecturesMissed", lecturesMissed);
-                                ed.commit();
-                                //пары для посещения
-                                isLectureToBeVisited = checkedItemsArray[0];
-                                isPracticeToBeVisited = checkedItemsArray[1];
+        builder.setTitle("Выберите, куда идёте:");
+        builder.setMultiChoiceItems(lessonsArray, checkedItemsArray,
+                new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog,
+                                        int which, boolean isChecked) {
+                        checkedItemsArray[which] = isChecked;
+                    }
+                });
+        builder.setPositiveButton("Готово",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog,
+                                        int id) {
+                        // передача информации о пропущенных парах
 
-                            }
-                        })
+                        if (!checkedItemsArray[0]) {
+                            lecturesMissed++;
+                        }
+                        if (!checkedItemsArray[1]) {
+                            practicesMissed++;
+                        }
+                        //сохранение этой информации
+                        SharedPreferences sPref = getPreferences(MODE_PRIVATE);
 
-                .setNegativeButton("Отмена",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int id) {
-                                dialog.cancel();
-                            }
-                        });
+                        SharedPreferences.Editor ed = sPref.edit();
+                        ed.putInt("practicesMissed", practicesMissed);
+                        ed.putInt("lecturesMissed", lecturesMissed);
+                        ed.commit();
+                        //пары для посещения
+                        //TODO переход к лекции и практике
+                        isLectureToBeVisited = checkedItemsArray[0];
+                        if (isLectureToBeVisited) {
+                            goToLecture();
+                        }
+                        isPracticeToBeVisited = checkedItemsArray[1];
+
+                    }
+                });
+        builder.setNegativeButton("Отмена",
+                (dialog, id) -> dialog.cancel());
         AlertDialog alert = builder.create();
         alert.show();
 
     }
 
     public void goToNextDay(View view) {
+        ImageButton btn_EverydayTask=findViewById(R.id.btn_everydayTask);
+        btn_EverydayTask.setEnabled(true);
         daysToExam--;
+        SharedPreferences sPref = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor ed = sPref.edit();
+        ed.putInt("daysToExam", daysToExam);
         if (daysToExam>0){
-            TextView daysToExamView=findViewById(R.id.tv_count_day_exam);
+            TextView daysToExamView=findViewById(R.id.tv_day_toExam);
             daysToExamView.setText(daysToExam);
         }
         else{
-            TextView daysToExamView=findViewById(R.id.tv_count_day_exam);
-            daysToExamView.setText(null);
+            TextView daysToExamView=findViewById(R.id.tv_day_toExam);
+            daysToExamView.setText("");
             TextView tv_dayView=findViewById(R.id.tv_day);
-            tv_dayView.setText(null);
+            tv_dayView.setText("");
             TextView tvExamView=findViewById(R.id.tv_exam);
             tvExamView.setText("День экзамена");
         }
 
+    }
+    private void goToLecture(){
+        Intent intent = new Intent(this, ZoomActivity.class);
+        startActivity(intent);
+    }
+    public void goToCourses(View view) {
+        Intent intent = new Intent(this, CoursesActivity.class);
+        startActivity(intent);
     }
 }
