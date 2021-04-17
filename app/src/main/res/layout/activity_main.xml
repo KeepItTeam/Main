@@ -6,43 +6,377 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <ImageView
+        android:id="@+id/background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/screen" />
+
+    <ImageView
+        android:id="@+id/human"
+        android:layout_width="236dp"
+        android:layout_height="437dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background"
+        app:layout_constraintVertical_bias="0.578"
+        app:srcCompat="@drawable/hum" />
+
+    <ImageView
+        android:id="@+id/down_background"
+        android:layout_width="412dp"
+        android:layout_height="112dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/menudown" />
+
+    <ImageView
+        android:id="@+id/backgraund_exam"
+        android:layout_width="177dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/plagexam"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tv_exam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="28dp"
+        android:text="До экзамена"
+        android:textColor="#8A8E92"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backgraund_exam" />
+
+    <TextView
+        android:id="@+id/tv_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
+        android:text="день"
+        android:textColor="#649EC8"
+        app:layout_constraintEnd_toEndOf="@+id/backgraund_exam"
+        app:layout_constraintTop_toBottomOf="@+id/tv_exam" />
+
+    <TextView
+        android:id="@+id/tv_count_day_exam"
+        android:layout_width="12dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:text="1"
+        android:textColor="#649EC8"
+        app:layout_constraintEnd_toStartOf="@+id/tv_day"
+        app:layout_constraintTop_toBottomOf="@+id/tv_exam" />
+
+    <ImageView
+        android:id="@+id/background_name_age"
+        android:layout_width="144dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="68dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/plugmak"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/btn_dosug"
+        android:layout_width="99dp"
+        android:layout_height="105dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="112dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:srcCompat="@drawable/dosug"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/btn_everydayTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="28dp"
+        android:background="@android:color/transparent"
+        android:onClick="goStudying"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/everyday" />
+
+    <ImageButton
+        android:id="@+id/btn_statistics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="28dp"
+        android:background="@android:color/transparent"
+        android:onClick="showCourseStatistics"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_everydayTask"
+        app:srcCompat="@drawable/statistic" />
+
+    <ImageButton
+        android:id="@+id/btn_nextDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="28dp"
+        android:background="@android:color/transparent"
+        android:onClick="goToNextDay"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintEnd_toStartOf="@+id/btn_courses"
+        app:srcCompat="@drawable/naxtday" />
+
+    <ImageButton
+        android:id="@+id/btn_courses"
+        android:layout_width="45dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="28dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/course" />
+
+    <ImageButton
+        android:id="@+id/btn_market"
+        android:layout_width="92dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="112dp"
+        android:background="@android:color/transparent"
+        android:onClick="goToShop"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/market" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/downrazdel"
+        tools:layout_editor_absoluteX="115dp"
+        tools:layout_editor_absoluteY="644dp" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/downrazdel"
+        tools:layout_editor_absoluteX="115dp"
+        tools:layout_editor_absoluteY="644dp" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/downrazdel"
+        tools:layout_editor_absoluteX="215dp"
+        tools:layout_editor_absoluteY="645dp" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/downrazdel"
+        tools:layout_editor_absoluteX="311dp"
+        tools:layout_editor_absoluteY="644dp" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="100dp"
+        android:text="Макар,"
+        android:textColor="#FF1C60"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="start Test"
-        android:onClick="openTest"
-        tools:ignore="MissingConstraints">
-    </Button>
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="showCourseStatistics"
-        android:text="Что там потестить надо?"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="48dp"></Button>
-
-    <Button
-        android:id="@+id/nextDayButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="158dp"
-        android:layout_marginTop="121dp"
-        android:enabled="false"
-        android:onClick="showCourseStatistics"
+    <ImageView
+        android:id="@+id/up_background"
+        android:layout_width="415dp"
+        android:layout_height="93dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/header"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tv_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="17 лет"
+        android:textColor="#8A8E92"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+    <ImageButton
+        android:id="@+id/btn_energy"
+        android:layout_width="45dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:onClick="showEnergyInformation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/energy" />
+
+    <ImageButton
+        android:id="@+id/btn_smile"
+        android:layout_width="46dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="136dp"
+        android:background="@android:color/transparent"
+        android:onClick="showMoodInformation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/smile" />
+
+    <TextView
+        android:id="@+id/tv_energy"
+        android:layout_width="45dp"
+        android:layout_height="13dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="40dp"
+        android:text="Энергия"
+        android:textColor=" #8ACF7F"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_energy"
+        tools:ignore="MissingConstraints" />
 
 
+    <TextView
+        android:id="@+id/rv_rubli2"
+        android:layout_width="46dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="56dp"
+        android:text="руб."
+        android:textColor=" #FF1C60"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_rubli"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tv_rubli"
+        android:layout_width="23dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="56dp"
+        android:text="200"
+        android:textColor=" #FF1C60"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/btn_rubli"
+        android:layout_width="43dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:onClick="showMoneyInformation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rubl" />
+
+    <ImageButton
+        android:id="@+id/btn_settings"
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="28dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/settings" />
+
+    <TextView
+        android:id="@+id/tv_smile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="128dp"
+        android:text="Настроение"
+        android:textColor=" #8ACF7F"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_smile"
+        tools:ignore="MissingConstraints" /><![CDATA[
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Button
+// android:layout_width="wrap_content"
+// android:layout_height="wrap_content"
+// android:text="start Test"
+// android:onClick="openTest"
+// tools:ignore="MissingConstraints">
+//>
+
+//Button
+// android:id="@+id/button2"
+// android:layout_width="wrap_content"
+// android:layout_height="wrap_content"
+// android:onClick="goStudying"
+// android:text="Что там потестить надо?"
+// tools:ignore="MissingConstraints"
+// tools:layout_editor_absoluteX="16dp"
+// tools:layout_editor_absoluteY="48dp">
+
+
+android:id="@+id/nextDayButton"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="158dp"
+android:layout_marginTop="121dp"
+android:enabled="false"
+android:onClick="goToNextAction"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/button2" /
+
+
+
+
+
+
+
+]]>
 </androidx.constraintlayout.widget.ConstraintLayout>

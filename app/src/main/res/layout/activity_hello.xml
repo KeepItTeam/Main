@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/background_hello"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HelloActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backgroundhello" />
+
+    <ImageView
+        android:id="@+id/teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/teacher" />
+
+    <ImageView
+        android:id="@+id/answer_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:srcCompat="@drawable/dialog" />
+
+    <ImageView
+        android:id="@+id/header_hello"
+        android:layout_width="411dp"
+        android:layout_height="95dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:srcCompat="@drawable/headhello" />
+
+    <ImageView
+        android:id="@+id/answer_makar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/answermakar" />
+
+    <TextView
+        android:id="@+id/tv_hello_answer_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="36dp"
+        android:text="Здравствуй,"
+        android:textColor="#8A8E92"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/answer_teacher"
+        app:layout_constraintTop_toTopOf="@+id/answer_teacher" />
+
+    <TextView
+        android:id="@+id/tv_text_answer_Teacher"
+        android:layout_width="349dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="6dp"
+        android:text="Рада познакомиться с вами. Чтобы начать занятия по цифровой грамотности, нам нужно выяснить ваш уровень."
+        android:textColor="#8A8E92"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_hello_answer_teacher" />
+
+    <TextView
+        android:id="@+id/tv_Hello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Приветствие"
+        android:textColor=" #FF1C60"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/header_hello"
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/tv_miss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="24dp"
+        android:text="Пропустить"
+        app:layout_constraintStart_toEndOf="@+id/tv_Hello"
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/tv_answer_name_makar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="10dp"
+        android:text="Макар:"
+        android:textColor="#FF1C60"
+        app:layout_constraintBottom_toTopOf="@+id/tv_answer_makar"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_answer_makar"
+        android:layout_width="243dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="44dp"
+        android:text="Добрый день, Ирина Петровна. Я готов пройти тест."
+        android:textColor="#649EC8"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_choose_text"
+        android:layout_width="94dp"
+        android:layout_height="43dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="46dp"
+        android:text="Нажмите сюда, чтобы перейти к тесту"
+        android:textAlignment="center"
+        android:textColor="#FF1C60"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="@+id/answer_makar" />
+
+    <TextView
+        android:id="@+id/tv_name_answer_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="36dp"
+        android:text="Макар!"
+        android:textColor=" #FF1C60"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_hello_answer_teacher"
+        app:layout_constraintTop_toTopOf="@+id/answer_teacher" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="42dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_miss"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:srcCompat="@drawable/misslogo" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="27dp"
+        android:layout_height="31dp"
+        android:layout_marginEnd="72dp"
+        android:onClick="goToSpeechExam"
+        android:layout_marginBottom="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/chooseanswer" />
+</androidx.constraintlayout.widget.ConstraintLayout>

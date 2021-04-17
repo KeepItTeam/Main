@@ -9,19 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ShopActivity"
-            android:label="@string/title_activity_shop"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".StatActivity"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".TestActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".HelloActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ExamSpeechActivity" />
+        <activity android:name=".LectureActivity" />
+        <activity
+            android:name=".ShopActivity"
+            android:label="@string/title_activity_shop"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".StatActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".TestActivity" />
+        <activity android:name=".MainActivity">
         </activity>
     </application>
 
