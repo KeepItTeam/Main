@@ -24,7 +24,7 @@ public class HelloActivity extends AppCompatActivity {
 
     }
     int i=0;
-
+    String str="";
     final int questionsNumber=3;
     final TestQuestion[] questions={
             new TestQuestion("Можно ли совершить телефонный звонок, если у вас нет подключения к мобильной сети?","да", "нет"),
@@ -72,7 +72,7 @@ public class HelloActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "верно",Toast.LENGTH_LONG);
             TextView tv_answer_makar=findViewById(R.id.tv_answer_makar);
             tv_answer_makar.setText(text);
-            //todo сохранить и обработать результат
+            str+=i;
         }
         else
         {
@@ -97,6 +97,7 @@ public class HelloActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             Intent intent = new Intent(this,MainActivity.class);
+            intent.putExtra("res",str);
             startActivity(intent);
              }
     }

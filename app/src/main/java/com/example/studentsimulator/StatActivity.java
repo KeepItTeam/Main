@@ -25,15 +25,23 @@ public class StatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String res = getIntent().getStringExtra("res");
+        int dataManagement=0;
+        int communications=0;
+        int safety=0;
+        int contentMaking=0;
+        int problemSolving=0;
+        if (res==null) res="012";
+        if (res.contains("0"))
+            communications++;
+        if (res.contains("1"))
+            communications++;
+        if(res.contains("2"))
+            dataManagement++;
         setContentView(R.layout.activity_stat);
-
         ArrayList<BarEntry> entries = new ArrayList<>();
         final SharedPreferences sPref = getPreferences(MODE_PRIVATE);
-        int dataManagement=sPref.getInt("dataManagement",3);//TODO вернуть 0
-        int communications=sPref.getInt("communications",2);
-        int safety=sPref.getInt("safety",0);
-        int contentMaking=sPref.getInt("contentMaking",0);
-        int problemSolving=sPref.getInt("problemSolving",0);
+
         entries.add(new BarEntry(dataManagement, 0));
         entries.add(new BarEntry(communications, 1));
         entries.add(new BarEntry(safety, 2));

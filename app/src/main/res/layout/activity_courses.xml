@@ -17,12 +17,11 @@
         app:srcCompat="@drawable/backgroundcourses" />
 
 
-
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="411dp"
+        android:layout_height="178dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,66 +42,67 @@
         android:id="@+id/imageView9"
         android:layout_width="411dp"
         android:layout_height="171dp"
+        android:layout_marginBottom="140dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/moodle"
-        tools:layout_editor_absoluteY="422dp"
         tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="388dp"
         android:layout_height="137dp"
+        android:layout_marginTop="72dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.434"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6"
         app:srcCompat="@drawable/digitstep"
-        tools:layout_editor_absoluteY="167dp"
         tools:ignore="MissingConstraints" />
+
 
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="391dp"
         android:layout_height="132dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7"
         app:srcCompat="@drawable/athourright" />
 
     <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="match_parent"
+        android:id="@+id/imageView25"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/zoom"
-        tools:layout_editor_absoluteY="540dp"
-        tools:ignore="MissingConstraints" />
+        app:srcCompat="@drawable/zoommmdf" />
 
-
-    <ImageView
-        android:id="@+id/imageButton4"
+    <ImageButton
+        android:id="@+id/imageButton5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="92dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="72dp"
+        android:onClick="gpToZoom"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/circle"
-        tools:ignore="MissingConstraints" />
+        app:srcCompat="@drawable/cerc" />
 
     <ImageView
         android:id="@+id/footer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/footer"
-        tools:layout_editor_absoluteY="636dp"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
@@ -110,6 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:onClick="showCourseStatistics"
         android:layout_marginBottom="16dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -131,6 +132,7 @@
         android:id="@+id/imageButton8"
         android:layout_width="60dp"
         android:layout_height="56dp"
+        android:onClick="goBack"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
         android:background="@android:color/transparent"
@@ -142,6 +144,7 @@
         android:id="@+id/imageButton9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="goStudying"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:background="@android:color/transparent"
@@ -167,10 +170,13 @@
         android:layout_height="41dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="28dp"
+        android:onClick="goBack"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

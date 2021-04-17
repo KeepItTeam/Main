@@ -6,28 +6,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-public class SplashScreenActivity extends AppCompatActivity {
+public class ForestBusActivity extends AppCompatActivity {
     private final int SPLASH_DISPLAY_LENGHT = 2500;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+        setContentView(R.layout.activity_forest_bus);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent mainIntent = new Intent(SplashScreenActivity.this, SitDownActivity.class);
-                SplashScreenActivity.this.startActivity(mainIntent);
-                SplashScreenActivity.this.finish();
+                Intent mainIntent = new Intent(ForestBusActivity.this, UniversityActivity.class);
+                ForestBusActivity.this.startActivity(mainIntent);
+                ForestBusActivity.this.finish();
             }
         }, SPLASH_DISPLAY_LENGHT);
     }
+
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
-
-
-
 }

@@ -57,4 +57,15 @@ public class ZoomActivity extends AppCompatActivity {
         view.setEnabled(false);
         //todo к лекции
     }
+
+    public void goBack(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void showCourseStatistics(View view) {
+        Intent intent = new Intent(this, StatActivity.class);
+        startActivity(intent);
+
+    }
+
 }

@@ -41,12 +41,9 @@ public class RunAwayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         String[] questions = {"Может ли включить преподователь включить твой звук?",
                 "Можно ли  создать конференцию ЗУМ на одного человека?",
-                "Могут ли участники одной конференции ЗУМ запустить несколько демонстраций экрана одновременно? " ,
-                "question4",
-                "question5","question6","question7","question8","question9","question10",
-                "question11"};
-        String[] answers = {"yes","no", "yes","no", "yes","yes", "yes","yes", "yes", "yes", "yes"};
-        int[] indexes ={0,1,2,3,4,5,6,7,8,9,10};
+                "Могут ли участники одной конференции ЗУМ запустить несколько демонстраций экрана одновременно? "};
+        String[] answers = {"yes","yes", "no"};
+        int[] indexes ={0,1,2};
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_run_away);
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -75,7 +72,7 @@ public class RunAwayActivity extends AppCompatActivity {
             }
         }*/
 
-        QuestionCounter = 10;
+        QuestionCounter = 2 ;
         // СКОЛЬКО ВОПРОСОВ ОСТАЛОСЬ
         //TextView remainingNumber = findViewById(R.id.RemainingNumber);
         //remainingNumber.setText(str+ QuestionCounter);
@@ -88,10 +85,10 @@ public class RunAwayActivity extends AppCompatActivity {
 
 
         //ОБЪЯВЛЯЕМ АНИМАЦИИ
-        TranslateAnimation animRight = new TranslateAnimation(0, 100, 0, 0);
+        TranslateAnimation animRight = new TranslateAnimation(0, 300, 0, 0);
         animRight.setDuration(300);
 
-        TranslateAnimation animLeft = new TranslateAnimation(0, -100, 0, 0);
+        TranslateAnimation animLeft = new TranslateAnimation(0, -200, 0, 0);
         animLeft.setDuration(300);
 
 
@@ -103,7 +100,7 @@ public class RunAwayActivity extends AppCompatActivity {
 
         //АЛЕРТ ПОБЕДЫ
         AlertDialog.Builder builderWin = new AlertDialog.Builder(RunAwayActivity.this);
-        builderWin.setTitle("").setMessage("ПОБЕДА!!!").setPositiveButton("Ок", (dialog, id)->{
+        builderWin.setTitle("").setMessage("ПОЗДРАВЛЯЕМ, ВЫ ПРАВИЛЬНО ОТВЕТИЛИ НА ВСЕ ВОПРОСЫ И СБЕЖАЛИ ОТ ЗЛОГО ПРЕПОДАВАТЕЛЯ  ").setPositiveButton("Ок", (dialog, id)->{
             goBack();
         });
         AlertDialog alertWin = builderWin.create();
@@ -124,7 +121,7 @@ public class RunAwayActivity extends AppCompatActivity {
             public void run() {
                 AlertDialog.Builder builder =new AlertDialog.Builder(RunAwayActivity.this);
                 builder.setTitle("").setMessage(questions[indexes[QuestionCounter]]).setPositiveButton("Да", (dialog, id)->{
-                    QuestionCounter--;
+
                     ((GifDrawable)gifImageView.getDrawable()).start();
                     ((GifDrawable)teacher.getDrawable()).start();
                     ((GifDrawable)student.getDrawable()).start();
@@ -133,9 +130,10 @@ public class RunAwayActivity extends AppCompatActivity {
                         student.startAnimation(animRight);
                     else
                         student.startAnimation(animLeft);
+                    QuestionCounter--;
                     dialog.cancel();
                 }).setNegativeButton("Нет", (dialog, id)->{
-                    QuestionCounter--;
+
                     ((GifDrawable)gifImageView.getDrawable()).start();
                     ((GifDrawable)teacher.getDrawable()).start();
                     ((GifDrawable)student.getDrawable()).start();
@@ -144,7 +142,7 @@ public class RunAwayActivity extends AppCompatActivity {
                         student.startAnimation(animRight);
                     else
                         student.startAnimation(animLeft);
-
+                    QuestionCounter--;
                     dialog.cancel();
                 });
                 AlertDialog alert = builder.create();
@@ -172,14 +170,14 @@ public class RunAwayActivity extends AppCompatActivity {
                 /*FrameLayout.LayoutParams params = (FrameLayout.LayoutParams)student.getLayoutParams();
                 params.rightMargin += 100;
                 student.setLayoutParams(params);*/
-                student.setX(student.getX()+100);
+                student.setX(student.getX()+275);
 
                 //QuestionCounter--;
                 //remainingNumber.setText("Вопросов осталось: "+ QuestionCounter);
 
                 Handler handler = new Handler();
                 Log.e("info", "ANIMATION END "+student.getX()+" "+teacher.getX());
-                if(student.getX()>500){
+                if(student.getX()>1000){
                     alertWin.show();
                     ((GifDrawable)gifImageView.getDrawable()).stop();
                     ((GifDrawable)teacher.getDrawable()).stop();
@@ -187,7 +185,7 @@ public class RunAwayActivity extends AppCompatActivity {
                 }
 
                 else {
-                    if(QuestionCounter==0){
+                    if(QuestionCounter==-1){
                         alertLoose.show();
                         ((GifDrawable)gifImageView.getDrawable()).stop();
                         ((GifDrawable)teacher.getDrawable()).stop();
@@ -199,7 +197,7 @@ public class RunAwayActivity extends AppCompatActivity {
                             public void run() {
                                 AlertDialog.Builder builder =new AlertDialog.Builder(RunAwayActivity.this);
                                 builder.setTitle("").setMessage(questions[indexes[QuestionCounter]]).setPositiveButton("Да", (dialog, id)->{
-                                    QuestionCounter--;
+
                                     ((GifDrawable)gifImageView.getDrawable()).start();
                                     ((GifDrawable)teacher.getDrawable()).start();
                                     ((GifDrawable)student.getDrawable()).start();
@@ -208,9 +206,10 @@ public class RunAwayActivity extends AppCompatActivity {
                                         student.startAnimation(animRight);
                                     else
                                         student.startAnimation(animLeft);
+                                    QuestionCounter--;
                                     dialog.cancel();
                                 }).setNegativeButton("Нет", (dialog, id)->{
-                                    QuestionCounter--;
+
                                     ((GifDrawable)gifImageView.getDrawable()).start();
                                     ((GifDrawable)teacher.getDrawable()).start();
                                     ((GifDrawable)student.getDrawable()).start();
@@ -219,7 +218,7 @@ public class RunAwayActivity extends AppCompatActivity {
                                         student.startAnimation(animRight);
                                     else
                                         student.startAnimation(animLeft);
-
+                                    QuestionCounter--;
                                     dialog.cancel();
                                 });
                                 AlertDialog alert = builder.create();
@@ -252,13 +251,13 @@ public class RunAwayActivity extends AppCompatActivity {
                 /*FrameLayout.LayoutParams params = (FrameLayout.LayoutParams)student.getLayoutParams();
                 params.rightMargin += 100;
                 student.setLayoutParams(params);*/
-                student.setX(student.getX() - 100);
+                student.setX(student.getX() - 200);
 
                 //QuestionCounter--;
                 //remainingNumber.setText(str+ QuestionCounter);
 
 
-                if (QuestionCounter == 0){
+                if (QuestionCounter == -1){
                     alertLoose.show();
                     ((GifDrawable)gifImageView.getDrawable()).stop();
                     ((GifDrawable)teacher.getDrawable()).stop();
@@ -282,7 +281,7 @@ public class RunAwayActivity extends AppCompatActivity {
                     public void run() {
                         AlertDialog.Builder builder = new AlertDialog.Builder(RunAwayActivity.this);
                         builder.setTitle("").setMessage(questions[indexes[QuestionCounter]]).setPositiveButton("Да", (dialog, id) -> {
-                            QuestionCounter--;
+
                             ((GifDrawable)gifImageView.getDrawable()).start();
                             ((GifDrawable)teacher.getDrawable()).start();
                             ((GifDrawable)student.getDrawable()).start();
@@ -292,9 +291,10 @@ public class RunAwayActivity extends AppCompatActivity {
                                 student.startAnimation(animRight);
                             else
                                 student.startAnimation(animLeft);
+                            QuestionCounter--;
                             dialog.cancel();
                         }).setNegativeButton("Нет", (dialog, id) -> {
-                            QuestionCounter--;
+
                             ((GifDrawable)gifImageView.getDrawable()).start();
                             ((GifDrawable)teacher.getDrawable()).start();
                             ((GifDrawable)student.getDrawable()).start();
@@ -304,7 +304,7 @@ public class RunAwayActivity extends AppCompatActivity {
                                 student.startAnimation(animRight);
                             else
                                 student.startAnimation(animLeft);
-
+                            QuestionCounter--;
                             dialog.cancel();
                         });
                         AlertDialog alert = builder.create();

@@ -47,6 +47,38 @@ public class MainActivity extends AppCompatActivity {
     //информация по проведению пар
     private boolean isLectureToBeVisited;
     private boolean isPracticeToBeVisited;
+/*
+    int dataManagement;
+    int communications;
+    int safety;
+    int contentMaking;
+    int problemSolving;
+
+    int dataViewing;
+    int dataRating;
+    int informationManagement;
+
+    int digitalCommunications;
+    int digitalExchange;
+    int digitalParting;
+    int digitalCooperation;
+    int netEthics;
+    int digitalIdentity;
+
+    int deviceSafety;
+    int dataSafety;
+    int healthSafety;
+    int environmentSafety;
+
+    int contentCreating;
+    int contentIntegration;
+    int authorRights;
+    int programming;
+
+    int technicalProblemSolving;
+    int determiningSolutionsNeed;
+    int digitalTechsUse;
+    int competenceRating;*/
 
 
     //TODO данные по курсу
@@ -55,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         getData();
         setContentView(R.layout.activity_main);
         TextView daysToExamView=findViewById(R.id.tv_day_toExam);
@@ -103,10 +136,10 @@ public class MainActivity extends AppCompatActivity {
         toast.show();
     }
 
-    public void goToShop(View view) {
+    /*public void goToShop(View view) {
         Intent intent = new Intent(this, ShopActivity.class);
         startActivity(intent);
-    }
+    }*/
 
     public void showCourseStatistics(View view) {
         Intent intent = new Intent(this, StatActivity.class);
@@ -142,49 +175,14 @@ public class MainActivity extends AppCompatActivity {
     public void goStudying(View view) {
         //посетить ли лекцию и практику (чекбокс)
         view.setEnabled(false);
-        final String[] lessonsArray = {"Лекция", "Практика"};
-        final boolean[] checkedItemsArray = {false, false};
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("Выберите, куда идёте:");
-        builder.setMultiChoiceItems(lessonsArray, checkedItemsArray,
-                new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog,
-                                        int which, boolean isChecked) {
-                        checkedItemsArray[which] = isChecked;
-                    }
+        builder.setTitle("Идёшь на пары?").setPositiveButton("Конечно",
+                (dialog, id) -> {
+                    Intent intent = new Intent(this, ZoomActivity.class);
+                    startActivity(intent);
+
                 });
-        builder.setPositiveButton("Готово",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog,
-                                        int id) {
-                        // передача информации о пропущенных парах
-
-                        if (!checkedItemsArray[0]) {
-                            lecturesMissed++;
-                        }
-                        if (!checkedItemsArray[1]) {
-                            practicesMissed++;
-                        }
-                        //сохранение этой информации
-                        SharedPreferences sPref = getPreferences(MODE_PRIVATE);
-
-                        SharedPreferences.Editor ed = sPref.edit();
-                        ed.putInt("practicesMissed", practicesMissed);
-                        ed.putInt("lecturesMissed", lecturesMissed);
-                        ed.commit();
-                        //пары для посещения
-                        //TODO переход к лекции и практике
-                        isLectureToBeVisited = checkedItemsArray[0];
-                        if (isLectureToBeVisited) {
-                            goToLecture();
-                        }
-                        isPracticeToBeVisited = checkedItemsArray[1];
-
-                    }
-                });
-        builder.setNegativeButton("Отмена",
+        builder.setNegativeButton("Нет, спасибо",
                 (dialog, id) -> dialog.cancel());
         AlertDialog alert = builder.create();
         alert.show();
@@ -214,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void goToLecture(){
         Intent intent = new Intent(this, ZoomActivity.class);
+        intent.putExtra("res",getIntent().getStringExtra("res"));
         startActivity(intent);
     }
     public void goToCourses(View view) {
