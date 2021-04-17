@@ -13,7 +13,8 @@
             android:name=".ShopActivity"
             android:label="@string/title_activity_shop"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".StatActivity" />
+        <activity android:name=".StatActivity"
+            android:screenOrientation="landscape"/>
         <activity android:name=".TestActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void showMoneyInformation(View view) {
+     public void showMoneyInformation(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Ваши финансы")
                 .setMessage("Ваша сумма на счету: " + money + "\n" +
@@ -111,11 +111,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showCourseStatistics(View view) {
+        Intent intent = new Intent(this, StatActivity.class);
+        startActivity(intent);
         //TODO статитстику бы
     }
-
-
-
 
     private void getData() {
         SharedPreferences sPref = getPreferences(MODE_PRIVATE);
@@ -141,8 +140,6 @@ public class MainActivity extends AppCompatActivity {
         daysToExam = sPref.getInt("daysToExam", 1);
         Log.e("DATA",age+" "+money+" "+allIncome+" "+name+" "+gender+" "+luck+" "+daysToExam);
     }
-
-
 
     public void goStudying(View view) {
         //посетить ли лекцию и практику (чекбокс)
