@@ -26,12 +26,12 @@
         android:id="@+id/teacher"
         android:layout_width="182dp"
         android:layout_height="105dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="28dp"
         android:src="@drawable/teacher_run"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.001"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
 
@@ -39,13 +39,13 @@
         android:id="@+id/student"
         android:layout_width="730dp"
         android:layout_height="121dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/student_run"
         android:visibility="visible"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
 
@@ -70,12 +70,10 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="28dp"
         android:onClick="onClick"
-        android:text="Button"
-        tools:layout_editor_absoluteX="622dp"
-        tools:layout_editor_absoluteY="16dp" /><![CDATA[
-
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
-]]>
+        android:text="Выход"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

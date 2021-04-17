@@ -39,7 +39,11 @@ public class RunAwayActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String[] questions = {"question1", "question2", "question3" ,"question4","question5","question6","question7","question8","question9","question10",
+        String[] questions = {"Может ли включить преподователь включить твой звук?",
+                "Можно ли  создать конференцию ЗУМ на одного человека?",
+                "Могут ли участники одной конференции ЗУМ запустить несколько демонстраций экрана одновременно? " ,
+                "question4",
+                "question5","question6","question7","question8","question9","question10",
                 "question11"};
         String[] answers = {"yes","no", "yes","no", "yes","yes", "yes","yes", "yes", "yes", "yes"};
         int[] indexes ={0,1,2,3,4,5,6,7,8,9,10};

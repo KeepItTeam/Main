@@ -114,4 +114,8 @@ public class HelloActivity extends AppCompatActivity {
         onClickMic();
 
     }
+    public void goToMain(View view){
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+    }
 }
