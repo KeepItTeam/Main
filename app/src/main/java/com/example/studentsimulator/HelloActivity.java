@@ -3,14 +3,21 @@ package com.example.studentsimulator;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -25,6 +32,12 @@ public class HelloActivity extends AppCompatActivity {
     }
     int i=0;
     String str="";
+    int dataManagement=0;
+    int communications=0;
+    int safety=0;
+    int contentMaking=0;
+    int problemSolving=0;
+    String dataStat;
     final int questionsNumber=3;
     final TestQuestion[] questions={
             new TestQuestion("Можно ли совершить телефонный звонок, если у вас нет подключения к мобильной сети?","да", "нет"),
@@ -33,7 +46,22 @@ public class HelloActivity extends AppCompatActivity {
     };
 
 
-
+    void writeFile(int dataManagement, int communications, int safety, int contentMaking, int problemSolving) {
+        try {
+            // отрываем поток для записи
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                    openFileOutput("data.txt", MODE_PRIVATE)));
+            // пишем данные
+            bw.write(dataManagement+" "+communications+" "+safety+" "+contentMaking+" "+problemSolving);
+            // закрываем поток
+            bw.close();
+            Log.e("LOG_TAG", "Файл записан");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void onClickMic()
     {
         try {
@@ -73,6 +101,14 @@ public class HelloActivity extends AppCompatActivity {
             TextView tv_answer_makar=findViewById(R.id.tv_answer_makar);
             tv_answer_makar.setText(text);
             str+=i;
+            switch (i){
+                    case 0:
+                    case 1:
+                    communications++;
+                    break;
+                case 2:
+                    dataManagement++;
+            }
         }
         else
         {
@@ -96,6 +132,7 @@ public class HelloActivity extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            writeFile(dataManagement,communications,safety,contentMaking,problemSolving);
             Intent intent = new Intent(this,MainActivity.class);
             intent.putExtra("res",str);
             startActivity(intent);
@@ -119,4 +156,9 @@ public class HelloActivity extends AppCompatActivity {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
+
+
+
+
+
 }

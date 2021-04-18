@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,26 +19,47 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class StatActivity extends AppCompatActivity {
+    String readFile() {
+        String resultString = "";
+        try {
+            // открываем поток для чтения
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    openFileInput("data.txt")));
+            String str = "";
+
+            // читаем содержимое
+            while ((str = br.readLine()) != null) {
+                Log.e("LOG_TAG", str);
+                resultString+=str;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return resultString;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String res = getIntent().getStringExtra("res");
-        int dataManagement=0;
-        int communications=0;
-        int safety=0;
-        int contentMaking=0;
-        int problemSolving=0;
-        if (res==null) res="012";
-        if (res.contains("0"))
-            communications++;
-        if (res.contains("1"))
-            communications++;
-        if(res.contains("2"))
-            dataManagement++;
+
+        String dataFromFile=readFile();
+        String[] a=dataFromFile.split(" ");
+        int dataManagement= Integer.parseInt(a[0]);
+        int communications=Integer.parseInt(a[1]);
+        int safety=Integer.parseInt(a[2]);
+        int contentMaking=Integer.parseInt(a[3]);
+        int problemSolving=Integer.parseInt(a[4]);
+        problemSolving+=4;//todo не забыть, что это только для наглядности
+        dataManagement+=3;
         setContentView(R.layout.activity_stat);
         ArrayList<BarEntry> entries = new ArrayList<>();
         final SharedPreferences sPref = getPreferences(MODE_PRIVATE);

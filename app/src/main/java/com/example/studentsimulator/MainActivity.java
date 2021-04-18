@@ -7,11 +7,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -91,7 +99,9 @@ public class MainActivity extends AppCompatActivity {
         getData();
         setContentView(R.layout.activity_main);
         TextView daysToExamView=findViewById(R.id.tv_day_toExam);
-       // Log.e("TV", daysToExamView.toString());
+
+        readFile();
+        //Log.e("TV", daysToExamView.toString());
         daysToExamView.setText(String.valueOf(daysToExam));
 
 
@@ -123,23 +133,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showEnergyInformation(View view) {
+        String str="100/100";
+        if ((energy < 100)) {
+            str = energy + "/100";
+        }
         Toast toast = Toast.makeText(getApplicationContext(),
-                energy + "/100",
+                str,
                 Toast.LENGTH_SHORT);
         toast.show();
     }
 
     public void showMoodInformation(View view) {
+        String str="100/100";
+        if ((mood < 100)) {
+            str = mood + "/100";
+        }
         Toast toast = Toast.makeText(getApplicationContext(),
-                mood + "/100",
+                str,
                 Toast.LENGTH_SHORT);
         toast.show();
     }
 
-    /*public void goToShop(View view) {
+    public void goToShop(View view) {
         Intent intent = new Intent(this, ShopActivity.class);
         startActivity(intent);
-    }*/
+    }
 
     public void showCourseStatistics(View view) {
         Intent intent = new Intent(this, StatActivity.class);
@@ -189,6 +207,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    void writeFile(int dataManagement, int communications, int safety, int contentMaking, int problemSolving) {
+        try {
+            // отрываем поток для записи
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                    openFileOutput("data.txt", MODE_PRIVATE)));
+            // пишем данные
+            bw.write(dataManagement+" "+communications+" "+safety+" "+contentMaking+" "+problemSolving);
+            // закрываем поток
+            bw.close();
+            Log.e("LOG_TAG", "Файл записан");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    String readFile() {
+        String resultString = "";
+        try {
+            // открываем поток для чтения
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    openFileInput("data.txt")));
+            String str = "";
+
+            // читаем содержимое
+            while ((str = br.readLine()) != null) {
+                Log.e("LOG_TAG", str);
+                resultString+=str;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return resultString;
+    }
     public void goToNextDay(View view) {
         ImageButton btn_EverydayTask=findViewById(R.id.btn_everydayTask);
         btn_EverydayTask.setEnabled(true);

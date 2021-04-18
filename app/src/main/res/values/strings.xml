@@ -4,4 +4,7 @@
     <string name="tab_text_1">ЕДА</string>
     <string name="tab_text_2">ШМОТ</string>
     <string name="DaysToExam">1</string>
+    <string name="title_activity_lecture">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

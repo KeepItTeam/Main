@@ -19,6 +19,12 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Timer;
@@ -36,6 +42,11 @@ public class RunAwayActivity extends AppCompatActivity {
     private TimerTask timerTask;
     private String question="Ахах?";
     private String str = "Вопросов осталось: ";
+    int communications;
+    int dataManagement;
+    int safety;
+    int contentMaking;
+    int problemSolving;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +56,13 @@ public class RunAwayActivity extends AppCompatActivity {
         String[] answers = {"yes","yes", "no"};
         int[] indexes ={0,1,2};
         super.onCreate(savedInstanceState);
+        String dataFromFile=readFile();
+        String[] a=dataFromFile.split(" ");
+        dataManagement= Integer.parseInt(a[0]);
+        communications=Integer.parseInt(a[1]);
+        safety=Integer.parseInt(a[2]);
+        contentMaking=Integer.parseInt(a[3]);
+        problemSolving=Integer.parseInt(a[4]);
         //setContentView(R.layout.activity_run_away);
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
@@ -85,10 +103,10 @@ public class RunAwayActivity extends AppCompatActivity {
 
 
         //ОБЪЯВЛЯЕМ АНИМАЦИИ
-        TranslateAnimation animRight = new TranslateAnimation(0, 300, 0, 0);
+        TranslateAnimation animRight = new TranslateAnimation(0, 200, 0, 0);
         animRight.setDuration(300);
 
-        TranslateAnimation animLeft = new TranslateAnimation(0, -200, 0, 0);
+        TranslateAnimation animLeft = new TranslateAnimation(0, -300, 0, 0);
         animLeft.setDuration(300);
 
 
@@ -101,6 +119,7 @@ public class RunAwayActivity extends AppCompatActivity {
         //АЛЕРТ ПОБЕДЫ
         AlertDialog.Builder builderWin = new AlertDialog.Builder(RunAwayActivity.this);
         builderWin.setTitle("").setMessage("ПОЗДРАВЛЯЕМ, ВЫ ПРАВИЛЬНО ОТВЕТИЛИ НА ВСЕ ВОПРОСЫ И СБЕЖАЛИ ОТ ЗЛОГО ПРЕПОДАВАТЕЛЯ  ").setPositiveButton("Ок", (dialog, id)->{
+            writeFile(dataManagement,communications,safety,contentMaking,problemSolving);
             goBack();
         });
         AlertDialog alertWin = builderWin.create();
@@ -109,6 +128,7 @@ public class RunAwayActivity extends AppCompatActivity {
         //АЛЕРТ ПОРАЖЕНИЯ
         AlertDialog.Builder builderLoose =new AlertDialog.Builder(RunAwayActivity.this);
         builderLoose.setTitle("").setMessage("Вы проиграли").setPositiveButton("Ок", (dialog, id)->{
+            writeFile(dataManagement,communications,safety,contentMaking,problemSolving);
             goBack();
         });
         AlertDialog alertLoose = builderLoose.create();
@@ -120,16 +140,22 @@ public class RunAwayActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             public void run() {
                 AlertDialog.Builder builder =new AlertDialog.Builder(RunAwayActivity.this);
-                builder.setTitle("").setMessage(questions[indexes[QuestionCounter]]).setPositiveButton("Да", (dialog, id)->{
+                builder.setTitle("").setMessage(questions[QuestionCounter]).setPositiveButton("Да", (dialog, id)->{
 
                     ((GifDrawable)gifImageView.getDrawable()).start();
                     ((GifDrawable)teacher.getDrawable()).start();
                     ((GifDrawable)student.getDrawable()).start();
                     //remainingNumber.setText(str+ QuestionCounter);
-                    if(answers[indexes[QuestionCounter]].equals("yes"))
+                    if(answers[indexes[QuestionCounter]].equals("yes")){
+                        communications++;
                         student.startAnimation(animRight);
+
+                    }
                     else
+                    {
                         student.startAnimation(animLeft);
+                        communications--;
+                    }
                     QuestionCounter--;
                     dialog.cancel();
                 }).setNegativeButton("Нет", (dialog, id)->{
@@ -138,10 +164,14 @@ public class RunAwayActivity extends AppCompatActivity {
                     ((GifDrawable)teacher.getDrawable()).start();
                     ((GifDrawable)student.getDrawable()).start();
                     //remainingNumber.setText(str+ QuestionCounter);
-                    if(answers[indexes[QuestionCounter]].equals("no"))
+                    if(answers[indexes[QuestionCounter]].equals("no")){
+                        communications++;
                         student.startAnimation(animRight);
-                    else
-                        student.startAnimation(animLeft);
+
+                    }
+                    else{
+                        communications--;
+                        student.startAnimation(animLeft);}
                     QuestionCounter--;
                     dialog.cancel();
                 });
@@ -345,6 +375,42 @@ public class RunAwayActivity extends AppCompatActivity {
     public void goBack() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+    void writeFile(int dataManagement, int communications, int safety, int contentMaking, int problemSolving) {
+        try {
+            // отрываем поток для записи
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                    openFileOutput("data.txt", MODE_PRIVATE)));
+            // пишем данные
+            bw.write(dataManagement+" "+communications+" "+safety+" "+contentMaking+" "+problemSolving);
+            // закрываем поток
+            bw.close();
+            Log.e("LOG_TAG", "Файл записан");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    String readFile() {
+        String resultString = "";
+        try {
+            // открываем поток для чтения
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    openFileInput("data.txt")));
+            String str = "";
+
+            // читаем содержимое
+            while ((str = br.readLine()) != null) {
+                Log.e("LOG_TAG", str+"in the game");
+                resultString+=str;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return resultString;
     }
 
 }
